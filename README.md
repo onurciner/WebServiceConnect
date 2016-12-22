@@ -14,7 +14,7 @@ To use the library, first include it your project using Gradle
 and:
 
         dependencies {
-                compile 'com.github.10uroi:WebServiceConnect:1.0.0'
+                compile 'com.github.10uroi:WebServiceConnect:1.0.1'
         }
         
 finally: Adding permissions to AndroidManifest.xml
