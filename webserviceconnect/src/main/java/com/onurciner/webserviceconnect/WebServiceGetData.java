@@ -93,7 +93,7 @@ public class WebServiceGetData {
             Gson gson = new Gson();
             Type type = new TypeToken<List<Object>>() {
             }.getType();
-            ArrayList<Object> gsonResponse = gson.fromJson(jsonString, type);
+            Object gsonResponse = gson.fromJson(jsonString, type);
             return gsonResponse;
         }
         return null;

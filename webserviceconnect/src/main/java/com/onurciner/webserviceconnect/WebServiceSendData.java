@@ -21,8 +21,8 @@ import java.util.ArrayList;
 public class WebServiceSendData {
 
     public HttpURLConnection urlConnection;
-    public String uri;
-    public String data;
+    private String uri;
+    private String data;
 
     private ReturnType returnType = ReturnType.STRING;
     private String requestMethod = "POST";
