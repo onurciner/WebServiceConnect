@@ -69,6 +69,12 @@ public class WebServiceSendData {
         return this;
     }
 
+    public WebServiceSendData setHeader(String key, String value) {
+        this.requestPropertyKey.add(key);
+        this.requestPropertyValue.add(value);
+        return this;
+    }
+
     public WebServiceSendData setRequestProperty(String key, String value) {
         this.requestPropertyKey.add(key);
         this.requestPropertyValue.add(value);
