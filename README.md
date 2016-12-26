@@ -1,5 +1,5 @@
 # WebServiceConnect 
-
+Connecting to webservices from Android devices is now easy. The sending and receiving of data to and from webservices can be customized in a desired way and can be done by a single method.
 
 ##Installation <img src="https://jitpack.io/v/10uroi/WebServiceConnect.svg">
 
@@ -14,7 +14,7 @@ To use the library, first include it your project using Gradle
 and:
 
         dependencies {
-                compile 'com.github.10uroi:WebServiceConnect:1.0.0'
+                compile 'com.github.10uroi:WebServiceConnect:1.0.1'
         }
         
 finally: Adding permissions to AndroidManifest.xml
