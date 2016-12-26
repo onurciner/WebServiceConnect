@@ -27,9 +27,49 @@ public class WebServiceGetData {
     private Integer readTimeout = 20000;
     private Integer connectTimeout = 30000;
     private String urlString = null;
+    private String character = "UTF-8";
+
+    private ArrayList<String> requestPropertyKey = new ArrayList<>();
+    private ArrayList<String> requestPropertyValue = new ArrayList<>();
+    private String requestPropertyType = null;
 
     public WebServiceGetData setUrl(String url) {
         this.urlString = url;
+        return this;
+    }
+
+    public WebServiceGetData setRequestProperty(RequestPropertyType requestPropertyType) {
+        if (requestPropertyType.equals(RequestPropertyType.APPLICATION_JSON))
+            this.requestPropertyType = "application/json";
+        else if (requestPropertyType.equals(RequestPropertyType.MULTIPART_FORM_DATA))
+            this.requestPropertyType = "multipart-form-data";
+        else if (requestPropertyType.equals(RequestPropertyType.APPLICATION_X_WWW_FORM_URLENCODED))
+            this.requestPropertyType = "application/x-www-form-urlencoded";
+        else if (requestPropertyType.equals(RequestPropertyType.APPLICATION_XML))
+            this.requestPropertyType = "application/xml";
+        else if (requestPropertyType.equals(RequestPropertyType.APPLICATION_BASE64))
+            this.requestPropertyType = "application/base64";
+        else if (requestPropertyType.equals(RequestPropertyType.APPLICATION_OCTET_STREAM))
+            this.requestPropertyType = "application/octet-stream";
+        else if (requestPropertyType.equals(RequestPropertyType.TEXT_PLAIN))
+            this.requestPropertyType = "text/plain";
+        else if (requestPropertyType.equals(RequestPropertyType.TEXT_CSS))
+            this.requestPropertyType = "text/css";
+        else if (requestPropertyType.equals(RequestPropertyType.TEXT_HTML))
+            this.requestPropertyType = "text/html";
+        else if (requestPropertyType.equals(RequestPropertyType.APPLICATION_JAVASCRIPT))
+            this.requestPropertyType = "application/javascript";
+        return this;
+    }
+
+    public WebServiceGetData setRequestProperty(String key, String value) {
+        this.requestPropertyKey.add(key);
+        this.requestPropertyValue.add(value);
+        return this;
+    }
+
+    public WebServiceGetData setCharacter(String character) {
+        this.character = character;
         return this;
     }
 
@@ -74,6 +114,13 @@ public class WebServiceGetData {
         urlConnection.setRequestMethod(requestMethod);
         urlConnection.setReadTimeout(readTimeout);
         urlConnection.setConnectTimeout(connectTimeout);
+
+        if (requestPropertyType != null)
+            urlConnection.setRequestProperty("Content-Type", requestPropertyType);
+        for (int i = 0; i < requestPropertyKey.size(); i++) {
+            urlConnection.setRequestProperty(requestPropertyKey.get(i), requestPropertyValue.get(i));
+        }
+
         urlConnection.setDoOutput(true);
         urlConnection.connect();
 
